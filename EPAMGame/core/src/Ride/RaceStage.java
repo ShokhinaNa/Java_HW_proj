@@ -9,8 +9,6 @@ import race.View;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -22,6 +20,8 @@ public class RaceStage extends Stage {
 	
 	protected static final int SIZE = 30;
 	Rider rider;
+	public boolean flag = false;
+	
 	
 	public RaceStage(){
 		OrthographicCamera camera = new OrthographicCamera();
@@ -44,50 +44,49 @@ public class RaceStage extends Stage {
 			
 			private Box[][] _boxes = new Box[Model.ROWS][Model.COLUMS];
 			
-						@Override
-						protected void drawBox(int colorIndex, int row, int col){
-							if (row < ROW_COUNT && row >= 0 && col < COL_COUNT && col >= 0){
-									Box box = new Box(colorIndex);
-									_boxes[row][col] = box;
-									RaceStage.this.addActor(box);
-									box.setBounds(col * Box.SIZE, row * Box.SIZE, Box.SIZE, Box.SIZE);
-
-						}
-							
-						}
-						
-						@Override
-						protected void drawRider(final int col){
-						//	rider.setBounds(col * Box.SIZE, (Model.ROWS - 1) * Box.SIZE, Box.SIZE, Box.SIZE);
-					}
-						
-						@Override
-						protected void drawField(){
-							for(int i = 0; i < ROW_COUNT; i++){
-								for(int j = 0; j < COL_COUNT; j++){
-									if (_boxes[i][j] != null)
-									_boxes[i][j].remove();
-									_boxes[i][j] = null;
-									}
-								}
-						}
-			
-		};
 		
+			@Override
+			protected void drawBox(int colorIndex, int row, int col){
+				if (row < ROW_COUNT && row >= 0 && col < COL_COUNT && col >= 0){
+						Box box = new Box(colorIndex, row, col);
+						_boxes[row][col] = box;
+						RaceStage.this.addActor(box);
+						box.setBounds(col * Box.SIZE, row * Box.SIZE, Box.SIZE, Box.SIZE);
+					}
+				
+				if ((row == Model.ROWS - 1)&& (col == (rider.actorX/SIZE))){
+					RaceScreen.GO = true;
+					}
+				}
+
+			
+			@Override
+			protected void drawRider(final int col){
+			}
+			
+			@Override
+			protected void drawField(){
+				for(int i = 0; i < ROW_COUNT; i++){
+					for(int j = 0; j < COL_COUNT; j++){
+						if (_boxes[i][j] != null)
+						_boxes[i][j].remove();
+						_boxes[i][j] = null;
+						}
+					}
+			}
+		
+		};
+	
 		controller.setView(view);
 		controller.setModel(model);
 
 		Timer.schedule(new Timer.Task() {
 			@Override
 			public void run(){
-				freeAct();
-				controller.moveDown();
+				controller.moveDown(true);
 			}
 
-			private void freeAct() {
-					
-			}
-		}, 0.5f, 0.5f);
+		}, 0.6f, 0.6f);
 		
 		
 		Gdx.input.setInputProcessor(this);
@@ -96,12 +95,12 @@ public class RaceStage extends Stage {
 			public boolean keyDown(InputEvent event, int keycode) {
 				switch(keycode){
 				case Input.Keys.LEFT:
-					if (rider.getX() > 0 + SIZE)
-					rider.actorX-=20;
+					if (rider.actorX > 0)
+					rider.actorX-=30;
 					break;
 				case Input.Keys.RIGHT:
-					if (rider.getX() < Gdx.graphics.getWidth() - SIZE)
-					rider.actorX+=20;
+					if (rider.actorX < Gdx.graphics.getWidth() - SIZE)
+					rider.actorX+=30;
 					break;	
 				}
 				return true;

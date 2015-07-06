@@ -70,8 +70,8 @@ public class Model {
 		}
 	}
 	
-	public void moveDown() {
-		if (_logic.moveDown()) {
+	public void moveDown(boolean flag) {
+		if (_logic.moveDown(flag)) {
 			fireChangedEvent();
 		}
 	}

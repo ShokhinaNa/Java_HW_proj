@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class RaceScreen implements Screen  {
 
     RideGame _game;
+	public static boolean GO = false;    
 	
 	public RaceScreen(RideGame game) {
 		_game = game;
@@ -27,6 +28,8 @@ public class RaceScreen implements Screen  {
 		Gdx.gl.glClearColor(0.5f, 0.5f, 0.5f, 1f);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
+		if (GO) _game.setScreen(_game.goScreen);
+	
 		_stage.act(delta);
 		_stage.draw();
 	}

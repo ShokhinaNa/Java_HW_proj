@@ -19,7 +19,7 @@ public class BackgroundImage extends Actor {
     	case 1:
             backgroundTexture = new Texture("road1.png");
             break;
-    	case 3:
+    	case 2:
             backgroundTexture = new Texture("road2.png");
             break;
     	}

@@ -2,6 +2,7 @@ package race;
 
 import java.util.Random;
 
+
 public class Logic {
 
 	private State _state;
@@ -32,14 +33,17 @@ public class Logic {
 
 
 	  
-	public boolean moveDown() {
+	public boolean moveDown(boolean flag) {
+		if (flag){
 		if (_state.countOfBlocks % 3==0){
 			_state.setFigure(Figure.randomFigure());
 		} else{
 			_state.setFigure(Bonus.randomBonus());	
+
 		}
 		_state.delFigure();
 		_state.countOfBlocks++;
+		}
 		return true;
 	}
 

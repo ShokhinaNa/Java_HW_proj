@@ -10,7 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 public class Rider extends Actor{
 	protected static final int SIZE = 30;
 	private Texture _texture;
-	float actorX = 60, actorY = 410;
+	float actorX = 60, actorY = 420;
 	public static boolean isMoveLeft = false;
 	public static boolean isMoveRight = false;
 	

@@ -20,7 +20,9 @@ public class RideGame extends Game {
 	@Override
     public void create() {    
 	      startScreen = new StartScreen(this);
-	      raceScreen = new RaceScreen(this);	      
+	      raceScreen = new RaceScreen(this);
+	      goScreen = new GOScreen(this);	      
+
 
 	      setScreen(startScreen);
     }

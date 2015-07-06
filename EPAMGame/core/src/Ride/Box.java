@@ -12,7 +12,7 @@ public class Box  extends Actor{
 	private Texture _texture;
 	float actorX = 0, actorY = 0;
 	
-	public Box(int colorIndex){
+	public Box(int colorIndex, int row, int col){
     	switch (colorIndex){
     	case 4:
     		_texture = new Texture("bonus.png");
@@ -20,17 +20,14 @@ public class Box  extends Actor{
     	default:
     		_texture = new Texture("block.png");
     	}
+    	actorX = col * SIZE;
+    	actorY = row * SIZE;
 		setBounds(actorX, actorY, SIZE, SIZE);   	
 	}
 
 	@Override
 	public void draw(Batch batch, float parentAlpha){
-		batch.draw(_texture, this.getX(), this.getY(), SIZE, SIZE);
+		batch.draw(_texture, actorX, actorY, SIZE, SIZE);
 	}
-
-    @Override
-    public void act(float delta){
-            actorY+=5;
-    }
 
 }

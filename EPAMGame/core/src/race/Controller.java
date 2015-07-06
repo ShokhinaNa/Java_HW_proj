@@ -26,8 +26,8 @@ public class Controller implements ModelListener {
 		_model = model;
 	}
 
-	public void moveDown() {
-		_model.moveDown();
+	public void moveDown(boolean flag) {
+		_model.moveDown(flag);
 	}
 
 }
