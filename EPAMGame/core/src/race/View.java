@@ -30,7 +30,7 @@ public class View {
 		_graphics.fillRect(ORIGIN_X + col * BOX_SIZE, ORIGIN_Y + (ROW_COUNT-1) * BOX_SIZE, BOX_SIZE, BOX_SIZE, 5);
 	}
 
-	private void drawFigure(final Queue<Figure> blocks) {
+	protected void drawFigure(final Queue<Figure> blocks) {
 		int count = ROW_COUNT-1;
 		for(Figure block : blocks) {
 			for (int i = 0; i < COL_COUNT; i++) {

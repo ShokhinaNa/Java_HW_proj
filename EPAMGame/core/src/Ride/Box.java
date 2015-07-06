@@ -9,8 +9,8 @@ import com.badlogic.gdx.scenes.scene2d.Actor;
 public class Box  extends Actor{
 	
 	protected static final int SIZE = 30;
-
 	private Texture _texture;
+	float actorX = 0, actorY = 0;
 	
 	public Box(int colorIndex){
     	switch (colorIndex){
@@ -20,6 +20,7 @@ public class Box  extends Actor{
     	default:
     		_texture = new Texture("block.png");
     	}
+		setBounds(actorX, actorY, SIZE, SIZE);   	
 	}
 
 	@Override
@@ -27,14 +28,9 @@ public class Box  extends Actor{
 		batch.draw(_texture, this.getX(), this.getY(), SIZE, SIZE);
 	}
 
-	public void setColor(int colorIndex) {
-    	switch (colorIndex){
-	    	case 4:
-	    		_texture = new Texture("bonus.png");
-	    		break;
-	    	default:
-	    		_texture = new Texture("block.png");
-    	}
-	}
+    @Override
+    public void act(float delta){
+            actorY+=5;
+    }
 
 }
